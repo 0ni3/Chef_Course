@@ -3,16 +3,14 @@
 general commands:
 
 
-´´´
-
+```
 chef generate attribute
 chef generate recipe
 chef generate file
 chef generate lwrp
 chef generate cookbook, chef generate repo, or chef generate app
 chef generate template
-
-´´´
+```
 
 the metadata.rb file is like __manifest__.py on python
 
@@ -48,33 +46,39 @@ knife cookbook site install tar
 
 Mixlib::ShellOut.new() is a class that shell out standard out and standard error, it accepts commands
 
+```
 find = Mixlib::ShellOut.new("find . -name '*.rb'")
 find.run_command
 puts find.stdout
+```
 
 shell_out method raise an error if the command fails
 
+
+```
 modules = shell_out("apachectl -t -D DUMP_MODULES")
 puts modules.stdout.
+```
 
 execute allows for the execution of a single commands
 
-
-´´´
+```
 execute 'systemctl restart httpd' do
   not_if 'curl -s http://localhost | grep "hello world"
 end
+```
 
+```
 execute 'app-installer'
   cwd '/opt/app/install'
   command './installer --install'
   user ' appuser'
   only_if { File.exist?('/opt/app/install/prereqs-complete.log')}
 end
-´´´
+
+```
 
 Use ShellOut and shell_out when you want to collect stdout and stderr
-
 
 
 # The chef command
@@ -127,7 +131,7 @@ vim templates/default/README.md.erb
 vim templates/default/kitchen.yml.erb (edited with docker config)
 
 
-´´´
+```
   ---
   driver:
     name: docker
@@ -169,7 +173,7 @@ vim templates/default/kitchen.yml.erb (edited with docker config)
         inspec_tests:
           - test/integration/default
       attributes:
-´´´
+```
 
 
 
@@ -180,7 +184,7 @@ cd generator/lcd_origin/files/default
 
 vim spec_helper.rb
 
-´´´
+```
 cookbook_path ['~/chef/cookbooks']
 local_mode true
 if File.basename($PROGRAM_NAME).eql?('chef') && ARGV[0].eql?('generate')
@@ -189,7 +193,7 @@ if File.basename($PROGRAM_NAME).eql?('chef') && ARGV[0].eql?('generate')
         chefdk.generator.email = 'weathereport.wr@gmail.com'
         chefdk.generator_cookbook = '~/generator/lcd_origin'
 end
-´´´
+```
 
 mkdir .chef
 
@@ -242,9 +246,6 @@ vim ./README.md
 www.foodcritic.io
 
 vim .foodcritic
-
-
-´´´
 
 #FOODCRITIC HAS DEPRECATED, USE COOKSTYLE INSTEAD
 
