@@ -224,7 +224,7 @@ foodcritic ./ -t correctness, style
 
 I can create a .foodcritic file to have rules defines on my own
 
-___
+__________________________
 cd ~/chef/cookbooks/lcdweb
 
 foodcritic -h 
