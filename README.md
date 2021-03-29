@@ -209,7 +209,7 @@ gem install docker
 
 
 
-# Foodcritic (chefdk tools)
+## Foodcritic (chefdk tools)
 
  
 is a part of chefdktools and is invoked with the foodcritic command, will check for style error synstax ecc..
@@ -237,17 +237,15 @@ foodcritic . -t ~FC064 -t FC065
 
 vim ./metadata.rb
 
-
-
 vim ./README.md
-
-
 
 www.foodcritic.io
 
 vim .foodcritic
+__________________________
 
-#FOODCRITIC HAS DEPRECATED, USE COOKSTYLE INSTEAD
+
+### FOODCRITIC HAS DEPRECATED, USE COOKSTYLE INSTEAD
 
 
 
