@@ -312,16 +312,88 @@ kitchen destroy
 
 
 
-## Hands-on lab: Chef Dk tools, Docker, Chef Generator, Test kitchen and community cookbooks
+# Hands-on lab: Chef Dk tools, Docker, Chef Generator, Test kitchen and community cookbooks
+
+```
+wget https://packages.chef.io/files/stable/chef-workstation/21.2.278/el/8/chef-workstation-21.2.278-1.el7.x86_64.rpm
+sudo rpm -ivh chef-workstation-21.2.278-1.el7.x86_64.rpm
+echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
+source ~/.bash_profile
+
+sudo yum install yum-utils
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum -y install docker-ce
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG docker &USER
+sudo reboot now
+
+sudo yum -y install git
+git config --global user.name "oni"
+git config --global user.email "oni@example.COM"
+git config --global core.editor vim
+
+mkdir ~/generator
+cd generator
+chef generate generator ./corp_origin
+cd corp_origin/templates/default
+
+vim kitchen.yml.erb
+cd
+mkdir -p chef/cookbooks
+cd .chef
+vim .config.rb
+
+chef generate cookbook cookbooks/corp_haproxy
+vim metadata.rb
+berks
+kitchen test
+kitchen converge
+docker ps
+kitchen login
+kitchen destroy
+```
+
+### Below is an example of an updated kitchen.yml.erb file that is set to use docker:
+
+```
+driver:
+    name: docker
+    privileged: true
+    use_sudo: false
+
+provisioner:
+    name: chef_zero
+    always_update_cookbooks: true
+    product_name: "chef"
+    product_version: "13.8.5"
+verifier:
+    name: inspec
+
+platforms:
+    - name: centos-7.2
+      driver_config:
+         run_command: /usr/lib/systemd/systemd
 
 
-- Install and configure what is necessary to use the specified version (2.4.17) of the ChefDK Tools on the Provided Server, including docker-ce, git and the docker gem.
+suites:
+      - name: default
+        run_list:
+          - recipe[<%= cookbook_name %>::default]
+      verifier:
+           inspect_tests:
+             - test/integration/default
+      attributes:
+```
 
-- Generate a generator cookbook and modify it for use with Docker. Under provisioner a product name of `chef` and product version of `13.8.5` is required.
-Configure the system so that the generator cookbook is used when generating cookbooks. Configure the system to use ~/chef/cookbooks for cookbooks.
+### config.rb in .chef 
 
-- Generate a New Cookbook Using the Generator Template created previously, call it corp_haproxy. Ensure template changes have been included and add haproxy so it will download.
+```
+if File.basename($PROGRAM_NAME).eql?('chef') && ARGV[0].eql?('generate')
+       chefdk.generator.license = "all_rights"
+       chefdk.generator.copyright_holder = "Student Name"
+       chefdk.generator.email = "you@example.com"
+       chefdk.generator_cookbook = "~/generator/corp_origin"
+end
 
-- Use berks to download dependencies, Use test kitchen to verify the cookbook.
-
-- Clean up the instance created with the kitchen command.
+```
