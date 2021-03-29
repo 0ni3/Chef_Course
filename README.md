@@ -1,6 +1,4 @@
-# Chef_Course
-
-Chef - The Local Cookbook Development Badge
+# Chef - The Local Cookbook Development Badge
 
 general commands:
 
@@ -127,47 +125,47 @@ vim templates/default/kitchen.yml.erb (edited with docker config)
 
 
 ´´´
----
-driver:
-  name: docker
-  privileged: true
-  use_sudo: false
+  ---
+  driver:
+    name: docker
+    privileged: true
+    use_sudo: false
 
-## The forwarded_port port feature lets you connect to ports on the VM guest via
-## localhost on the host.
-## see also: https://www.vagrantup.com/docs/networking/forwarded_ports
+    ## The forwarded_port port feature lets you connect to ports on the VM guest via
+    ## localhost on the host.
+    ## see also: https://www.vagrantup.com/docs/networking/forwarded_ports
 
-#  network:
-#    - ["forwarded_port", {guest: 80, host: 8080}]
+    #  network:
+    #    - ["forwarded_port", {guest: 80, host: 8080}]
 
-provisioner:
-  name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%%= !ENV['CI'] %>
-  always_update_cookbooks: true
+  provisioner:
+    name: chef_zero
+    # You may wish to disable always updating cookbooks in CI or other testing environments.
+    # For example:
+    #   always_update_cookbooks: <%%= !ENV['CI'] %>
+    always_update_cookbooks: true
 
-  ## product_name and product_version specifies a specific Chef product and version to install.
-  ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
-  product_name: "chef"
-  product_version: "13.8.5"
+    ## product_name and product_version specifies a specific Chef product and version to install.
+    ## see the Chef documentation for more details: https://docs.chef.io/workstation/config_yml_kitchen/
+    product_name: "chef"
+    product_version: "13.8.5"
 
-verifier:
-  name: inspec
+  verifier:
+    name: inspec
 
-platforms:
-  - name: centos-7.2
-    driver_config:
-       run_command: /usr/lib/systemd/systemd
+  platforms:
+    - name: centos-7.2
+      driver_config:
+         run_command: /usr/lib/systemd/systemd
 
-suites:
-  - name: default
-    run_list:
-      - recipe[<%= cookbook_name %>::default]
-    verifier:
-      inspec_tests:
-        - test/integration/default
-    attributes:
+  suites:
+    - name: default
+      run_list:
+        - recipe[<%= cookbook_name %>::default]
+      verifier:
+        inspec_tests:
+          - test/integration/default
+      attributes:
 ´´´
 
 
