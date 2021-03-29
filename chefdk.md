@@ -344,7 +344,8 @@ mkdir -p chef/cookbooks
 cd .chef
 vim .config.rb
 
-chef generate cookbook cookbooks/corp_haproxy
+cd chef/cookbooks
+chef generate cookbook -b ./corp_haproxy
 vim metadata.rb
 berks
 kitchen test
