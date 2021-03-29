@@ -2,13 +2,16 @@
 
 general commands:
 
+
 ´´´
+
 chef generate attribute
 chef generate recipe
 chef generate file
 chef generate lwrp
 chef generate cookbook, chef generate repo, or chef generate app
 chef generate template
+
 ´´´
 
 the metadata.rb file is like __manifest__.py on python
