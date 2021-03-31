@@ -223,10 +223,11 @@ end
  - :delete
  - :nothing
  - :touch 
-
+ 
+```
   444  export EDITOR=$(which vi)
   445  knife environment create development
-
+```
  the file resource:
 ```
  file '/tmp/message' do 
@@ -270,6 +271,7 @@ chef generate template cookbooks/location index.html
 
 ## Libraries
 
+```
   448  cd chef/
   449  ls
   450  chef generate cookbook cookbooks/lcd_libraries
@@ -279,6 +281,7 @@ chef generate template cookbooks/location index.html
   455  ls
   456  vim resources/site.rb
   457  vim resource/default.rb
+```
 
 ```
 [vagrant@localhost resources]$ cat site.rb
