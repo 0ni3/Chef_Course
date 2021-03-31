@@ -185,11 +185,12 @@ end
 kitchen verify
 kitchen destroy
 
+```
   442  vim recipes/default.rb
   443  kitchen verify
   444  export EDITOR=$(which vi)
   445  knife environment create development
-
+```
 
 node.default['app']['language'] = 'ruby'
 
