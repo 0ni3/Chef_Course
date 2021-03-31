@@ -325,7 +325,7 @@ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dock
 sudo yum -y install docker-ce
 sudo systemctl enable docker
 sudo systemctl start docker
-sudo usermod -aG docker &USER
+sudo usermod -aG docker $USER
 sudo reboot now
 
 sudo yum -y install git
