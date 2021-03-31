@@ -327,7 +327,7 @@ Then we'll gain an understanding of Local Cookbook Development by creating a coo
 At the end of this hands-on lab, we will have installed and configured ChefDK tools, developed cookbooks, and tested them with docker and kitchen commands.
 
 
-
+```
     2  wget https://packages.chef.io/files/stable/chef-workstation/21.2.278/el/8/chef-workstation-21.2.278-1.el7.x86_64.rpm
     3  sudo rpm -ivh chef-workstation-21.2.278-1.el7.x86_64.rpm
     4  echo 'eval "$(chef shell-init bash)"' >> ~/.bash_profile
@@ -369,7 +369,7 @@ At the end of this hands-on lab, we will have installed and configured ChefDK to
    53  kitchen verify
    54  kitchen login
    55  kitchen destroy
-
+```
 
 #### kitchen.yml
 
