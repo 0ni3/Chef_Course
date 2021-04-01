@@ -13,14 +13,14 @@ Data bags can also be used to encrypt sensitive information with a shared key;
 Working with a data bag:
 
 knife commands:
-
+```
  knife data bag create BAG [ITEM] (option)
  knife data bag	delete BAG [ITEM] (option)
  knife data bag edit ...
  knife data bag from file BAG FILE|FOLDER [FILE|FOLDER...] (option)
  knife data bag list (optios)
  knife data bag show BAG [ITEM] (options)
-
+```
 
 A data bag can be created with knife or manually as a json file
 
